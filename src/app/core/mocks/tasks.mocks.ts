@@ -4,7 +4,7 @@ export const tasksMocks: Task[] = [
     {
       id: 1,
       name: 'Zrobić zakupy spożywcze',
-      status: 'Completed',
+      status: 'completed',
       date: '2025-05-01',
       description: 'Muszę kupić mleko, mąkę i jajka.',
       showDescription: false,
@@ -12,7 +12,7 @@ export const tasksMocks: Task[] = [
     {
       id: 2,
       name: 'Opłacić rachunki',
-      status: 'Pending',
+      status: 'pending',
       date: '2025-05-10',
       description: 'Tylko nie odkładaj tego na inny dzień!',
       showDescription: false,
@@ -20,7 +20,7 @@ export const tasksMocks: Task[] = [
     {
       id: 3,
       name: 'Urodziny mamy',
-      status: 'Planned',
+      status: 'planned',
       date: '2025-05-15',
       description: 'Kupić kwiaty i tort.',
       showDescription: false,

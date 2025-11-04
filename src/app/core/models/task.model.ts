@@ -1,7 +1,7 @@
 export interface Task {
   id: number;
   name: string;
-  status: 'Completed' | 'Pending' | 'Planned';
+  status: 'completed' | 'pending' | 'planned';
   date: string;
   description: string;
   showDescription?: boolean;

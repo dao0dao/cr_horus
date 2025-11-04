@@ -16,12 +16,12 @@
                 type="checkbox"
                 [id]="'task-' + task.id"
                 class="form-check-input me-2"
-                [checked]="task.status === 'Completed'"
+                [checked]="task.status === 'completed'"
                 (change)="toggleTaskStatus(task.id)"
               />
               <label
                 [for]="'task-' + task.id"
-                [ngClass]="{ 'text-decoration-line-through text-muted': task.status === 'Completed' }"
+                [ngClass]="{ 'text-decoration-line-through text-muted': task.status === 'completed' }"
                 class="fw-bold"
               >
                 {{ task.name }}

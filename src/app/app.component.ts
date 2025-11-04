@@ -60,14 +60,14 @@ export class AppComponent {
     const task = this.tasks.find((t) => t.id === taskId);
     if (task) {
       switch (task.status) {
-        case 'Completed':
-          task.status = 'Pending';
+        case 'completed':
+          task.status = 'pending';
           break;
-        case 'Pending':
-          task.status = 'Planned';
+        case 'pending':
+          task.status = 'planned';
           break;
-        case 'Planned':
-          task.status = 'Completed';
+        case 'planned':
+          task.status = 'completed';
           break;
       }
     }
@@ -96,7 +96,7 @@ export class AppComponent {
     const newTask: Task = {
       id: this.getLastTaskId() + 1,
       name,
-      status: 'Planned',
+      status: 'planned',
       date,
       description: description || '',
       showDescription: false,
