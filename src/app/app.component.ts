@@ -12,23 +12,28 @@ import {
 import { Task } from './core/models/task.model';
 import { tasksMocks } from './core/mocks/tasks.mocks';
 import { commonStrings } from './core/strings/common.strings';
+import { FiltersComponent } from './core/shared/filters/filters.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgClass, FormsModule, ReactiveFormsModule],
+  imports: [NgClass, FormsModule, ReactiveFormsModule, FiltersComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  tasks = tasksMocks;
+  tasks: Task[];
+
+  filteredTasksList: Task[];
+
   commonStrings = commonStrings;
 
-  filters = { name: '', date: '', status: '' };
   isModalOpen = false;
   taskForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
+    this.tasks = tasksMocks;
+    this.filteredTasksList = this.tasks;
     this.taskForm = this.fb.group({
       name: ['', Validators.required],
       date: ['', [Validators.required, this.futureDateValidator]],
@@ -46,22 +51,9 @@ export class AppComponent {
     return null;
   }
 
-  filteredTasks(): Task[] {
-    return this.tasks.filter((task) => {
-      const matchesName = task.name
-        .toLowerCase()
-        .includes(this.filters.name.toLowerCase());
-
-      const matchesDate = this.filters.date
-        ? task.date === this.filters.date
-        : true;
-
-      const matchesStatus = this.filters.status
-        ? task.status === this.filters.status
-        : true;
-
-      return matchesName && matchesDate && matchesStatus;
-    });
+  setFilteredTasks(tasks: Task[]): void {
+    console.log('Filtered tasks received:', tasks);
+    this.filteredTasksList = tasks;
   }
 
   toggleTaskStatus(taskId: number): void {

@@ -1,0 +1,52 @@
+<div class="card p-3 mb-4">
+    <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label class="form-label fw-bold">
+                {{commonStrings.filters.nameFilter.label}}
+            </label>
+            <input
+                type="text"
+                class="form-control"
+                placeholder="{{commonStrings.filters.nameFilter.placeholder}}"
+                [(ngModel)]="filters.name"
+                (keyup)="filter()"
+            >
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label fw-bold">
+                {{commonStrings.filters.dateFilter.label}}
+            </label>
+            <input
+                type="date"
+                class="form-control"
+                [(ngModel)]="filters.date"
+                (keyup)="filter()"
+            >
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label fw-bold">
+                {{ commonStrings.filters.statusFilter.label }}
+            </label>
+            <select
+                class="form-select"
+                [(ngModel)]="filters.status"
+                (keyup)="filter()"
+            >
+                <option value>
+                    {{ commonStrings.filters.statusFilter.allOption}}
+                </option>
+                <option value="Completed">
+                    {{ commonStrings.filters.statusFilter.completedOption}}
+                </option>
+                <option value="Pending">
+                    {{commonStrings.filters.statusFilter.pendingOption}}
+                </option>
+                <option value="Planned">
+                    {{commonStrings.filters.statusFilter.plannedOption}}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
