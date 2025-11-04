@@ -1,0 +1,57 @@
+ <div class="modal-backdrop" (click)="closeModal()"></div>
+
+  <div class="modal-dialog">
+    <div class="modal-content p-4">
+      <h4 class="mb-3">{{commonStrings.newTask.title}}</h4>
+
+      <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{commonStrings.newTask.form.nameInput.label}}</label>
+          <input type="text" class="form-control" formControlName="name" [placeholder]="commonStrings.newTask.form.nameInput.placeholder" />
+          @if (taskForm.get('name')?.touched && taskForm.get('name')?.errors?.['required']) {
+            <div class="text-danger mt-1 small">{{commonStrings.newTask.form.nameInput.errorRequired}}</div>
+          }
+          @if (taskForm.get('name')?.errors?.['maxlength']) {
+            <div class="text-danger mt-1 small">
+              {{ commonStrings.newTask.form.nameInput.errorMaxLength }}
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{commonStrings.newTask.form.dateInput.label}}</label>
+          <input type="date" class="form-control" formControlName="date" />
+          @if (taskForm.get('date')?.touched && taskForm.get('date')?.errors?.['required']) {
+            <div class="text-danger mt-1 small">{{commonStrings.newTask.form.dateInput.errorRequired}}</div>
+          }
+          @if (taskForm.get('date')?.touched && taskForm.get('date')?.errors?.['pastDate']) {
+            <div class="text-danger mt-1 small">{{commonStrings.newTask.form.dateInput.errorPastDate}}</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{commonStrings.newTask.form.descriptionInput.label}}</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+            rows="3"
+            [placeholder]="commonStrings.newTask.form.descriptionInput.placeholder"></textarea>
+            
+          @if (taskForm.get('description')?.touched && taskForm.get('description')?.errors?.['maxlength']) {
+            <div class="text-danger mt-1 small">
+                {{ commonStrings.newTask.form.descriptionInput.errorMaxLength }}
+            </div>
+          }
+        </div>
+
+        <div class="text-end">
+          <button type="button" class="btn btn-danger me-2" (click)="closeModal()">{{commonStrings.actions.cancel}}</button>
+          <button 
+            type="submit"
+            class="btn btn-primary"
+            [ngClass]="{'btn-primary': !taskForm.invalid, 'btn-dark': taskForm.invalid}"
+            [disabled]="taskForm.invalid">{{commonStrings.actions.save}}</button>
+        </div>
+      </form>
+    </div>
+  </div>

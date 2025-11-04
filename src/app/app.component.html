@@ -10,42 +10,5 @@
 </div>
 
 @if (isModalOpen) {
-  <div class="modal-backdrop" (click)="closeModal()"></div>
-
-  <div class="modal-dialog">
-    <div class="modal-content p-4">
-      <h4 class="mb-3">{{commonStrings.newTask.title}}</h4>
-
-      <form [formGroup]="taskForm" (ngSubmit)="addTask()">
-        <div class="mb-3">
-          <label class="form-label fw-bold">{{commonStrings.newTask.form.nameInput.label}}</label>
-          <input type="text" class="form-control" formControlName="name" placeholder="np. Umówić wizytę u dentysty" />
-          @if (taskForm.get('name')?.touched && taskForm.get('name')?.invalid) {
-            <div class="text-danger mt-1 small">{{commonStrings.newTask.form.nameInput.errorRequired}}</div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label fw-bold">{{commonStrings.newTask.form.dateInput.label}}</label>
-          <input type="date" class="form-control" formControlName="date" />
-          @if (taskForm.get('date')?.touched && taskForm.get('date')?.errors?.['required']) {
-            <div class="text-danger mt-1 small">{{commonStrings.newTask.form.dateInput.errorRequired}}</div>
-          }
-          @if (taskForm.get('date')?.touched && taskForm.get('date')?.errors?.['pastDate']) {
-            <div class="text-danger mt-1 small">{{commonStrings.newTask.form.dateInput.errorPastDate}}</div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label fw-bold">{{commonStrings.newTask.form.descriptionInput}}</label>
-          <textarea class="form-control" formControlName="description" rows="3"></textarea>
-        </div>
-
-        <div class="text-end">
-          <button type="button" class="btn btn-secondary me-2" (click)="closeModal()">{{commonStrings.actions.cancel}}</button>
-          <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">{{commonStrings.actions.save}}</button>
-        </div>
-      </form>
-    </div>
-  </div>
+ <app-add-task-modal [lastTaskId]="getLastTaskId()" (addNewTask)="addTask($event)"></app-add-task-modal>
 }
