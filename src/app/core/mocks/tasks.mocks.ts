@@ -25,4 +25,12 @@ export const tasksMocks: Task[] = [
       description: 'Kupić kwiaty i tort.',
       showDescription: false,
     },
+    {
+      id: 4,
+      name: 'Urodziny taty',
+      status: 'planned',
+      date: '2025-05-16',
+      description: 'Kupić procenty.',
+      showDescription: false,
+    },
   ]

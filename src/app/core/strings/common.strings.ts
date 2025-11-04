@@ -19,6 +19,13 @@ export const commonStrings = Object.freeze({
       pendingOption: 'Oczekujące',
     },
   },
+  taskList: {
+    descriptionToggleShow: 'Pokaż opis',
+    descriptionToggleHide: 'Ukryj opis',
+    completed: 'Zakończone',
+    pending: 'Oczekujące',
+    planned: 'Zaplanowane',
+  },
   newTask: {
     title: 'Dodaj nowe zadanie',
     form: {

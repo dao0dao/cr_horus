@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { NgClass } from '@angular/common';
 import {
   FormsModule,
@@ -13,18 +13,25 @@ import { Task } from './core/models/task.model';
 import { tasksMocks } from './core/mocks/tasks.mocks';
 import { commonStrings } from './core/strings/common.strings';
 import { FiltersComponent } from './core/shared/filters/filters.component';
+import { TaskListComponent } from './core/shared/task-list/task-list.component';
+import { TaskStatusUpdate } from './core/models/task-status-update.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgClass, FormsModule, ReactiveFormsModule, FiltersComponent],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    FiltersComponent,
+    TaskListComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  tasks: Task[];
+  allTasks: WritableSignal<Task[]> = signal(tasksMocks);
 
-  filteredTasksList: Task[];
+  filteredTasks: WritableSignal<Task[]> = signal(tasksMocks);
 
   commonStrings = commonStrings;
 
@@ -32,8 +39,6 @@ export class AppComponent {
   taskForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.tasks = tasksMocks;
-    this.filteredTasksList = this.tasks;
     this.taskForm = this.fb.group({
       name: ['', Validators.required],
       date: ['', [Validators.required, this.futureDateValidator]],
@@ -52,29 +57,17 @@ export class AppComponent {
   }
 
   setFilteredTasks(tasks: Task[]): void {
-    console.log('Filtered tasks received:', tasks);
-    this.filteredTasksList = tasks;
+    this.filteredTasks.set(tasks);
   }
 
-  toggleTaskStatus(taskId: number): void {
-    const task = this.tasks.find((t) => t.id === taskId);
-    if (task) {
-      switch (task.status) {
-        case 'completed':
-          task.status = 'pending';
-          break;
-        case 'pending':
-          task.status = 'planned';
-          break;
-        case 'planned':
-          task.status = 'completed';
-          break;
-      }
-    }
-  }
-
-  toggleDescription(task: Task): void {
-    task.showDescription = !task.showDescription;
+  updateTaskStatus(taskStatusUpdate: TaskStatusUpdate): void {
+    this.allTasks.update((tasks) =>
+      tasks.map((task) =>
+        task.id === taskStatusUpdate.id
+          ? { ...task, status: taskStatusUpdate.status }
+          : task
+      )
+    );
   }
 
   openModal(): void {
@@ -102,13 +95,13 @@ export class AppComponent {
       showDescription: false,
     };
 
-    this.tasks.push(newTask);
+    this.allTasks.update((tasks) => [...tasks, newTask]);
     this.closeModal();
   }
 
   private getLastTaskId(): number {
     let id = 0;
-    return this.tasks.reduce((maxId, task) => {
+    return this.allTasks().reduce((maxId, task) => {
       return task.id > maxId ? task.id : maxId;
     }, id);
   }

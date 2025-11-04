@@ -4,47 +4,9 @@
     <button class="btn btn-primary mx-3" (click)="openModal()">{{commonStrings.header.buttonLabel}}</button>
   </div>
 
-  <app-filters [tasks]="tasks" (filteredTasks)="setFilteredTasks($event)"></app-filters>
+  <app-filters [tasks]="allTasks()" (filteredTasks)="setFilteredTasks($event)"></app-filters>
 
-  <ul class="list-group">
-    @for (task of filteredTasksList; track task.id) {
-      <li class="list-group-item">
-        <div class="d-flex flex-column">
-          <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-              <input
-                type="checkbox"
-                [id]="'task-' + task.id"
-                class="form-check-input me-2"
-                [checked]="task.status === 'completed'"
-                (change)="toggleTaskStatus(task.id)"
-              />
-              <label
-                [for]="'task-' + task.id"
-                [ngClass]="{ 'text-decoration-line-through text-muted': task.status === 'completed' }"
-                class="fw-bold"
-              >
-                {{ task.name }}
-              </label>
-            </div>
-
-            <div>
-              <span class="badge bg-info me-2">{{ task.status }}</span>
-              <button class="btn btn-link p-0" (click)="toggleDescription(task)">
-                {{ task.showDescription ? 'ukryj opis' : 'pokaż opis' }}
-              </button>
-            </div>
-          </div>
-
-          <small class="text-secondary">{{ task.date }}</small>
-
-          @if (task.showDescription) {
-            <p class="mt-2 mb-0">{{ task.description }}</p>
-          }
-        </div>
-      </li>
-    }
-  </ul>
+  <app-task-list [tasks]="filteredTasks()" (tasksStatusUpdate)="updateTaskStatus($event)"></app-task-list>
 </div>
 
 @if (isModalOpen) {

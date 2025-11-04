@@ -32,18 +32,18 @@
             <select
                 class="form-select"
                 [(ngModel)]="filters.status"
-                (keyup)="filter()"
+                (change)="filter()"
             >
                 <option value>
                     {{ commonStrings.filters.statusFilter.allOption}}
                 </option>
-                <option value="Completed">
+                <option value="completed">
                     {{ commonStrings.filters.statusFilter.completedOption}}
                 </option>
-                <option value="Pending">
+                <option value="pending">
                     {{commonStrings.filters.statusFilter.pendingOption}}
                 </option>
-                <option value="Planned">
+                <option value="planned">
                     {{commonStrings.filters.statusFilter.plannedOption}}
                 </option>
             </select>
