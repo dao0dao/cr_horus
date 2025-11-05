@@ -35,6 +35,10 @@ export class AddTaskModalComponent {
     });
   }
 
+  getControlByName(controlName: string) {
+    return this.taskForm.get(controlName);
+  }
+
   getMinDate(): string {
     return new Date().toISOString().split('T')[0];
   }
@@ -42,9 +46,9 @@ export class AddTaskModalComponent {
   addTask(): void {
     if (this.taskForm.invalid) return;
 
-    const name = this.taskForm.get('name')?.value;
-    const date = this.taskForm.get('date')?.value;
-    const description = this.taskForm.get('description')?.value;
+    const name = this.getControlByName('name')?.value;
+    const date = this.getControlByName('date')?.value;
+    const description = this.getControlByName('description')?.value;
 
     const newTask: Task = {
       id: this.lastTaskId() + 1,
@@ -60,9 +64,5 @@ export class AddTaskModalComponent {
 
   closeModal(): void {
     this.addNewTask.emit();
-  }
-
-  getControlByName(controlName: string) {
-    return this.taskForm.get(controlName);
   }
 }
