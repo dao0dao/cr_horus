@@ -25,6 +25,7 @@ export const commonStrings = Object.freeze({
     completed: 'Zakończone',
     pending: 'Oczekujące',
     planned: 'Zaplanowane',
+    noTasksMessage: 'Brak zadań do wyświetlenia.',
   },
   newTask: {
     title: 'Dodaj nowe zadanie',

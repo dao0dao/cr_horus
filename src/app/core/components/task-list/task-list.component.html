@@ -1,5 +1,9 @@
 <ul class="list-group">
-  @for (task of tasks(); track task.id) {
+  @if(!tasks().length) {
+  <li class="list-group-item text-center text-secondary">
+    {{ commonStrings.taskList.noTasksMessage }}
+  </li>
+  }@else { @for (task of tasks(); track task.id) {
   <li
     class="list-group-item cursor-pointer"
     (click)="toggleTaskStatus(task.id)"
@@ -53,5 +57,5 @@
     <p class="mt-2 mb-0">{{ task.description }}</p>
     }
   </li>
-  }
+  } }
 </ul>
