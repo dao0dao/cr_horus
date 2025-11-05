@@ -33,7 +33,7 @@ export const commonStrings = Object.freeze({
         label: 'Nazwa zadania',
         errorRequired: 'Nazwa jest wymagana.',
         placeholder: 'Wpisz nazwę zadania',
-        errorMaxLength: 'Nazwa nie może przekraczać 30 znaków.',
+        errorMaxLength: 'Nazwa nie może przekraczać 50 znaków.',
       },
       dateInput: {
         label: 'Data',

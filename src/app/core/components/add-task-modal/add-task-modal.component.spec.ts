@@ -35,9 +35,9 @@ describe('AddTaskModalComponent', () => {
         expect(nameControl.errors?.['required']).toBeTruthy();
       });
 
-      it('should mark name field as invalid when length is more than 30', () => {
+      it('should mark name field as invalid when length is more than 50', () => {
         const nameControl = component.taskForm.controls['name'];
-        nameControl.setValue('A'.repeat(31));
+        nameControl.setValue('A'.repeat(51));
         expect(nameControl.valid).toBeFalse();
         expect(nameControl.errors?.['maxlength']).toBeTruthy();
       });
@@ -71,9 +71,9 @@ describe('AddTaskModalComponent', () => {
         expect(nameControl.errors).toBeNull();
       });
 
-      it('should mark name field as valid when length is less than or equal 30', () => {
+      it('should mark name field as valid when length is less than or equal 50', () => {
         const nameControl = component.taskForm.controls['name'];
-        nameControl.setValue('A'.repeat(30));
+        nameControl.setValue('A'.repeat(50));
         expect(nameControl.valid).toBeTrue();
         expect(nameControl.errors?.['maxlength']).toBeFalsy();
       });

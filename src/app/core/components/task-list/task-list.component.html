@@ -1,44 +1,56 @@
 <ul class="list-group">
-    @for (task of tasks(); track task.id) {
-      <li class="list-group-item cursor-pointer" (click)="toggleTaskStatus(task.id)">
-          <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <div 
-                    class="badge me-2 task-status"
-                    [ngClass]="{
-                        'bg-success': task.status === 'completed',
-                        'bg-warning': task.status === 'pending',
-                        'text-dark': task.status === 'pending',
-                        'bg-info': task.status === 'planned'
-                    }"
-                >
-                    {{ commonStrings.taskList[task.status] }}
-                </div>
-                <input
-                    type="checkbox"
-                    [id]="'task-' + task.id"
-                    class="visually-hidden"
-                    [checked]="task.status === 'completed'"
-                />
-                <label
-                    [for]="'task-' + task.id"
-                    [ngClass]="{ 'text-decoration-line-through text-muted': task.status === 'completed' }"
-                    class="fw-bold cursor-pointer"
-                >
-                    {{ task.name }}
-                </label>
-            </div>
+  @for (task of tasks(); track task.id) {
+  <li
+    class="list-group-item cursor-pointer"
+    (click)="toggleTaskStatus(task.id)"
+  >
+    <div class="d-flex align-items-center flex-wrap flex-sm-nowrap">
+      <div
+        class="badge me-2 mb-2 mb-sm-0 task-status"
+        [ngClass]="{
+          'bg-success': task.status === 'completed',
+          'bg-warning': task.status === 'pending',
+          'text-dark': task.status === 'pending',
+          'bg-info': task.status === 'planned'
+        }"
+      >
+        {{ commonStrings.taskList[task.status] }}
+      </div>
+      <div class="d-flex align-items-start flex-grow-1 flex-sm-grow-0 me-2 mb-2 mb-sm-0">
+        <input
+          type="checkbox"
+          [id]="'task-' + task.id"
+          class="mt-1 me-2 cursor-pointer"
+          [checked]="task.status === 'completed'"
+        />
+        <label
+          [for]="'task-' + task.id"
+          [ngClass]="{
+            'text-decoration-line-through text-muted':
+              task.status === 'completed'
+          }"
+          class="fw-bold cursor-pointer"
+        >
+          {{ task.name }}
+        </label>
+      </div>
+      <button
+        class="btn btn-outline-info mt-2 mt-sm-0 ms-auto"
+        (click)="toggleDescription($event, task)"
+      >
+        {{
+          task.showDescription
+            ? commonStrings.taskList.descriptionToggleHide
+            : commonStrings.taskList.descriptionToggleShow
+        }}
+      </button>
+    </div>
 
-            <button type="button" class="btn btn-outline-info" (click)="toggleDescription($event, task)">
-                {{ task.showDescription ? commonStrings.taskList.descriptionToggleHide : commonStrings.taskList.descriptionToggleShow }}
-            </button>
-          </div>
+    <small class="text-secondary">{{ task.date }}</small>
 
-          <small class="text-secondary">{{ task.date }}</small>
-
-          @if (task.showDescription) {
-            <p class="mt-2 mb-0">{{ task.description }}</p>
-          }
-      </li>
+    @if (task.showDescription) {
+    <p class="mt-2 mb-0">{{ task.description }}</p>
     }
-  </ul>
+  </li>
+  }
+</ul>

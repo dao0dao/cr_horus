@@ -20,7 +20,7 @@
 
         <div class="mb-3">
           <label class="form-label fw-bold">{{commonStrings.newTask.form.dateInput.label}}</label>
-          <input type="date" class="form-control" formControlName="date" />
+          <input type="date" [min]="getMinDate()" class="form-control" formControlName="date" />
           @if (taskForm.get('date')?.touched && taskForm.get('date')?.errors?.['required']) {
             <div class="text-danger mt-1 small">{{commonStrings.newTask.form.dateInput.errorRequired}}</div>
           }

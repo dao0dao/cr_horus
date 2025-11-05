@@ -21,7 +21,7 @@ import { futureDateValidator } from '../../utils/validators/future-date.validato
 })
 export class AddTaskModalComponent {
   lastTaskId = input<number>(0);
-  addNewTask = output<Task| void>();
+  addNewTask = output<Task | void>();
 
   commonStrings = commonStrings;
 
@@ -29,10 +29,14 @@ export class AddTaskModalComponent {
 
   constructor(private fb: FormBuilder) {
     this.taskForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(30)]],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
       date: ['', [Validators.required, futureDateValidator]],
       description: ['', Validators.maxLength(300)],
     });
+  }
+
+  getMinDate(): string {
+    return new Date().toISOString().split('T')[0];
   }
 
   addTask(): void {

@@ -1,14 +1,25 @@
-<div class="container">
+<div class="container p-2">
   <div class="d-flex my-4 justify-content-between align-items-center">
-    <h1>{{commonStrings.header.label}}</h1>
-    <button class="btn btn-primary mx-3" (click)="openModal()">{{commonStrings.header.buttonLabel}}</button>
+    <h1>{{ commonStrings.header.label }}</h1>
+    <button class="btn btn-primary mx-3" (click)="openModal()">
+      {{ commonStrings.header.buttonLabel }}
+    </button>
   </div>
 
-  <app-filters [tasks]="allTasks()" (filteredTasks)="setFilteredTasks($event)"></app-filters>
+  <app-filters
+    [tasks]="allTasks()"
+    (filteredTasks)="setFilteredTasks($event)"
+  ></app-filters>
 
-  <app-task-list [tasks]="filteredTasks()" (tasksStatusUpdate)="updateTaskStatus($event)"></app-task-list>
+  <app-task-list
+    [tasks]="filteredTasks()"
+    (tasksStatusUpdate)="updateTaskStatus($event)"
+  ></app-task-list>
 </div>
 
 @if (isModalOpen) {
- <app-add-task-modal [lastTaskId]="getLastTaskId()" (addNewTask)="addTask($event)"></app-add-task-modal>
+<app-add-task-modal
+  [lastTaskId]="getLastTaskId()"
+  (addNewTask)="addTask($event)"
+></app-add-task-modal>
 }
