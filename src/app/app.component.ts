@@ -28,7 +28,6 @@ import { AddTaskModalComponent } from './core/components/add-task-modal/add-task
     AddTaskModalComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   allTasks: WritableSignal<Task[]> = signal(tasksMocks);

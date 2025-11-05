@@ -7,7 +7,6 @@ import { TaskStatus, Task } from '../../models/task.model';
   selector: 'app-filters',
   imports: [FormsModule],
   templateUrl: './filters.component.html',
-  styleUrl: './filters.component.scss',
   standalone: true,
 })
 export class FiltersComponent {
