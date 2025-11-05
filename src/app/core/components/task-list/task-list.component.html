@@ -4,7 +4,7 @@
     class="list-group-item cursor-pointer"
     (click)="toggleTaskStatus(task.id)"
   >
-    <div class="d-flex align-items-center flex-wrap flex-sm-nowrap">
+    <div class="d-flex align-items-center flex-wrap">
       <div
         class="badge me-2 mb-2 mb-sm-0 task-status"
         [ngClass]="{
@@ -17,7 +17,7 @@
         {{ commonStrings.taskList[task.status] }}
       </div>
       <div
-        class="d-flex align-items-start flex-grow-1 flex-sm-grow-0 me-2 mb-2 mb-sm-0"
+        class="d-flex align-items-start me-2 mb-2 mb-sm-0"
       >
         <input
           #checkbox
