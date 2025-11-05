@@ -1,55 +1,55 @@
 export const commonStrings = Object.freeze({
-  header: {
-    buttonLabel: 'Dodaj zadanie',
-    label: 'Lista zadań',
+  actions: {
+    cancel: 'Anuluj',
+    save: 'Zapisz',
   },
   filters: {
+    dateFilter: {
+      label: 'Data wydarzenia',
+    },
     nameFilter: {
       label: 'Tytuł zadania',
       placeholder: 'Szukaj po tytule...',
     },
-    dateFilter: {
-      label: 'Data wydarzenia',
-    },
     statusFilter: {
-      label: 'Status',
       allOption: 'Wszystkie',
       completed: 'Zakończone',
-      planned: 'Zaplanowane',
+      label: 'Status',
       pending: 'Oczekujące',
+      planned: 'Zaplanowane',
     },
   },
-  taskList: {
-    descriptionToggleShow: 'Pokaż opis',
-    descriptionToggleHide: 'Ukryj opis',
-    completed: 'Zakończone',
-    pending: 'Oczekujące',
-    planned: 'Zaplanowane',
-    noTasksMessage: 'Brak zadań do wyświetlenia.',
+  header: {
+    buttonLabel: 'Dodaj zadanie',
+    label: 'Lista zadań',
   },
   newTask: {
-    title: 'Dodaj nowe zadanie',
     form: {
-      nameInput: {
-        label: 'Nazwa zadania',
-        errorRequired: 'Nazwa jest wymagana.',
-        placeholder: 'Wpisz nazwę zadania',
-        errorMaxLength: 'Nazwa nie może przekraczać 50 znaków.',
-      },
       dateInput: {
-        label: 'Data',
-        errorRequired: 'Data jest wymagana.',
         errorPastDate: 'Data nie może być przeszła.',
+        errorRequired: 'Data jest wymagana.',
+        label: 'Data',
       },
       descriptionInput: {
+        errorMaxLength: 'Opis nie może przekraczać 300 znaków.',
         label: 'Opis zadania',
         placeholder: 'Wpisz opis zadania (opcjonalnie)',
-        errorMaxLength: 'Opis nie może przekraczać 300 znaków.',
+      },
+      nameInput: {
+        errorMaxLength: 'Nazwa nie może przekraczać 50 znaków.',
+        errorRequired: 'Nazwa jest wymagana.',
+        label: 'Nazwa zadania',
+        placeholder: 'Wpisz nazwę zadania',
       },
     },
+    title: 'Dodaj nowe zadanie',
   },
-  actions: {
-    save: 'Zapisz',
-    cancel: 'Anuluj',
+  taskList: {
+    completed: 'Zakończone',
+    descriptionToggleHide: 'Ukryj opis',
+    descriptionToggleShow: 'Pokaż opis',
+    noTasksMessage: 'Brak zadań do wyświetlenia.',
+    pending: 'Oczekujące',
+    planned: 'Zaplanowane',
   },
 });
