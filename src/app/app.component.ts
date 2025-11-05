@@ -1,21 +1,16 @@
 import { Component, signal, WritableSignal } from '@angular/core';
-import { NgClass } from '@angular/common';
 import {
   FormsModule,
   ReactiveFormsModule,
-  FormBuilder,
-  FormGroup,
-  Validators,
-  AbstractControl,
 } from '@angular/forms';
 
 import { Task } from './core/models/task.model';
-import { tasksMocks } from './core/mocks/tasks.mocks';
 import { commonStrings } from './core/strings/common.strings';
 import { FiltersComponent } from './core/components/filters/filters.component';
 import { TaskListComponent } from './core/components/task-list/task-list.component';
 import { TaskStatusUpdate } from './core/models/task-status-update.model';
 import { AddTaskModalComponent } from './core/components/add-task-modal/add-task-modal.component';
+import { tasksMocks } from './data/mocks/tasks.mocks';
 
 @Component({
   selector: 'app-root',
