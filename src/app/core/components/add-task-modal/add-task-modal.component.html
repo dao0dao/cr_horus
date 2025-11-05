@@ -8,7 +8,8 @@
       <div class="mb-3">
         <label class="form-label fw-bold">
           {{ commonStrings.newTask.form.nameInput.label }}
-          @if(taskForm.get('name')?.errors?.['required']){
+          @if(!taskForm.get('name')?.touched &&
+          taskForm.get('name')?.errors?.['required']){
           <span class="text-danger">*</span>
           }
         </label>
@@ -33,7 +34,8 @@
       <div class="mb-3">
         <label class="form-label fw-bold">
           {{ commonStrings.newTask.form.dateInput.label }}
-          @if(taskForm.get('date')?.errors?.['required']){
+          @if(!taskForm.get('date')?.touched &&
+          taskForm.get('date')?.errors?.['required']){
           <span class="text-danger">*</span>
           }
         </label>
