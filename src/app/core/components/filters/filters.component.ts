@@ -22,7 +22,11 @@ export class FiltersComponent {
   commonStrings = commonStrings;
 
   filters = { name: '', date: '', status: '' };
-  options: readonly TaskStatus[] = Object.freeze(['completed', 'pending', 'planned']);
+  options: readonly TaskStatus[] = Object.freeze([
+    'completed',
+    'pending',
+    'planned',
+  ]);
 
   constructor() {}
 

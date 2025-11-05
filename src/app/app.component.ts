@@ -25,7 +25,7 @@ import { AddTaskModalComponent } from './core/components/add-task-modal/add-task
     ReactiveFormsModule,
     FiltersComponent,
     TaskListComponent,
-    AddTaskModalComponent
+    AddTaskModalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
