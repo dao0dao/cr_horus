@@ -156,4 +156,17 @@ describe('AddTaskModalComponent', () => {
       );
     });
   });
+
+  describe('getControlByName', () => {
+    it('should return the correct FormControl when a valid control name is provided', () => {
+      const control = component.getControlByName('name');
+      expect(control).toBe(component.taskForm.get('name'));
+      expect(control).toBeTruthy();
+    });
+
+    it('should return null when an invalid control name is provided', () => {
+      const control = component.getControlByName('nonExistingControl');
+      expect(control).toBeNull();
+    });
+  });
 });

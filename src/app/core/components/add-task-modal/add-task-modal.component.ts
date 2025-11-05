@@ -61,4 +61,8 @@ export class AddTaskModalComponent {
   closeModal(): void {
     this.addNewTask.emit();
   }
+
+  getControlByName(controlName: string) {
+    return this.taskForm.get(controlName);
+  }
 }
