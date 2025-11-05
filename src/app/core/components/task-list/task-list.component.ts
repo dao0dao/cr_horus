@@ -1,5 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  input,
+  output,
+  viewChildren,
+} from '@angular/core';
 import { Task } from '../../models/task.model';
 import { TaskStatusUpdate } from '../../models/task-status-update.model';
 import { commonStrings } from '../../strings/common.strings';
@@ -12,10 +19,26 @@ import { commonStrings } from '../../strings/common.strings';
   standalone: true,
 })
 export class TaskListComponent {
+  checkboxes = viewChildren<ElementRef<HTMLInputElement>>('checkbox');
+
   tasks = input<Task[]>([]);
+
   tasksStatusUpdate = output<TaskStatusUpdate>();
 
   commonStrings = commonStrings;
+
+  constructor() {
+    effect(() => {
+      this.tasks().forEach((task, index) => {
+        if (task.status === 'pending') {
+          const elementRef = this.checkboxes()[index];
+          if (elementRef) {
+            elementRef.nativeElement.indeterminate = true;
+          }
+        }
+      });
+    });
+  }
 
   toggleTaskStatus(taskId: number): void {
     const task = this.tasks().find((task) => task.id === taskId);
