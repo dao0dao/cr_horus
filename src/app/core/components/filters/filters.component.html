@@ -37,15 +37,11 @@
         <option value>
           {{ commonStrings.filters.statusFilter.allOption }}
         </option>
-        <option value="completed">
-          {{ commonStrings.filters.statusFilter.completedOption }}
-        </option>
-        <option value="pending">
-          {{ commonStrings.filters.statusFilter.pendingOption }}
-        </option>
-        <option value="planned">
-          {{ commonStrings.filters.statusFilter.plannedOption }}
-        </option>
+        @for(option of options; track option){
+          <option [value]="option">
+            {{ commonStrings.filters.statusFilter[option] }}
+          </option>
+        }
       </select>
     </div>
   </div>

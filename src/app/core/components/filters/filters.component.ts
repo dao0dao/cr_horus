@@ -1,7 +1,7 @@
-import { Component, effect, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { commonStrings } from '../../strings/common.strings';
 import { FormsModule } from '@angular/forms';
-import { Task } from '../../models/task.model';
+import { TaskStatus, Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-filters',
@@ -22,6 +22,7 @@ export class FiltersComponent {
   commonStrings = commonStrings;
 
   filters = { name: '', date: '', status: '' };
+  options: readonly TaskStatus[] = Object.freeze(['completed', 'pending', 'planned']);
 
   constructor() {}
 

@@ -14,9 +14,9 @@ export const commonStrings = Object.freeze({
     statusFilter: {
       label: 'Status',
       allOption: 'Wszystkie',
-      completedOption: 'Zakończone',
-      plannedOption: 'Zaplanowane',
-      pendingOption: 'Oczekujące',
+      completed: 'Zakończone',
+      planned: 'Zaplanowane',
+      pending: 'Oczekujące',
     },
   },
   taskList: {
